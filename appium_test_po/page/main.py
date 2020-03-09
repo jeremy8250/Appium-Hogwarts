@@ -26,6 +26,10 @@ class Main(BasePage):
         return Stocks(self._driver)
         # 跳转【行情】页面
 
+    def goto_stocks_page_by_yaml(self):
+        self.steps("../page/main.yaml")
+        return Stocks(self._driver)
+
     def goto_trade_page(self):
         pass
 

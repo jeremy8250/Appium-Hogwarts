@@ -50,6 +50,7 @@ class App(BasePage):
             # 启动页加载时的倒计时
         else:
             self._driver.start_activity(self._appPackage, self._appActivity)
+            # 如果没有初始化driver,直接启动app
 
         return self
         # 启动后返回自己，可链式调用下面的main方法

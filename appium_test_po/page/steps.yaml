@@ -1,3 +1,3 @@
 - by: id # 定位方式
-  locator: tv_search # 定位符
-  action: click # 找到控件后执行点击操作
+  locator: tv_search # 定位元素
+  action: click # 找到元素后执行的操作

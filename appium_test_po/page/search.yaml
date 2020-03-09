@@ -1,7 +1,13 @@
+#- by: id
+#  locator: search_input_text
+#- action: send
+#  value: "{key}"
+
 - by: id
   locator: search_input_text
-- action: send
-  value: "{key}"
+  action: send
+  value: "{key}" # 通过search.py传入
+
 - by: id
   locator: name
   action: click

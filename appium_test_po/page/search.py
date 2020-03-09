@@ -29,6 +29,14 @@ class Search(BasePage):
         self.find(self._name_locator).click()
         return self
 
+    def search_by_yaml(self, key: str):
+        self._params["key"] = key
+        # 给_params传参
+        self.steps("../page/search.yaml")
+        return self
+
+
+
     def get_price(self, key: str) -> float:
         # 输入类型为string，返回类型为float
         return float(self.find(MobileBy.ID, "current_price").text)

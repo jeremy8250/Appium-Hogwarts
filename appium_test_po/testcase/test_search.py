@@ -17,7 +17,6 @@ class TestSearch:
         App().start().main().goto_search_page_with_datadrive().search_with_datadrive("jd")
 
 
-
     # @pytest.mark.parametrize("key, stock_type, price", [
     #     ("alibaba", "BABA", 200),
     #     ("JD", "JD", 20)
