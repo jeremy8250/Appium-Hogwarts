@@ -13,8 +13,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class TestXueqiu:
 
-    # data_value = yaml.safe_load(open('/Users/ouchou/Projects/Appium-Hogwarts/data.yaml', "r"))
-    data_value = yaml.safe_load(open('/Projects/Appium-Hogwarts/data.yaml', "r"))
+    data_value = yaml.safe_load(open('/Users/ouchou/Projects/Appium-Hogwarts/data.yaml', "r"))
+    # data_value = yaml.safe_load(open('/data.yaml', "r"))
     # 读取外部数据
 
     def setup(self):
@@ -25,19 +25,19 @@ class TestXueqiu:
         caps["appActivity"] = ".view.WelcomeActivityAlias"
         caps["noReset"] = True
         # 启动时不重置数据
-        caps["autoGrantPermissions"] = True
+        # caps["autoGrantPermissions"] = True
         # 自动确认权限
-        caps["unicodeKeyBoard"] = True
+        # caps["unicodeKeyBoard"] = True
         # # 使用非英文键盘输入
         # caps["resetKeyBoard"] = True
         # # 测试完后重置为英文键盘输入
         # caps["dontStopAppOnReset"] = True
         # app启动时不重启进程
-        caps["disableAndroidWatchers"] = True
+        # caps["disableAndroidWatchers"] = True
         # 关闭安卓监听机制，提速用
-        caps["skipDeviceInitialization"] = True
+        # caps["skipDeviceInitialization"] = True
         # 每次执行时，跳过appium对设备权限和配置的初始化，加快启动速度
-        caps["skipServerInstallation"] = True
+        # caps["skipServerInstallation"] = True
         # 每次执行时，跳过uiautomator2 server的安装，加快启动速度
         caps["chromedriverExecutable"] = "/Users/ouchou/chromedriver/chromedriver_2.20"
         # 切换到webview后，需要指定chromedriver的版本，否则切换失败
@@ -48,7 +48,7 @@ class TestXueqiu:
         self.driver.implicitly_wait(10)
 
 
-        self.driver.find_element(MobileBy.XPATH, '//*[@resource-id="com.xueqiu.android:id/tv_skip"]').click()
+        # self.driver.find_element(MobileBy.XPATH, '//*[@resource-id="com.xueqiu.android:id/tv_skip"]').click()
         # 启动页加载时的倒计时
 
     @pytest.mark.parametrize("gupiao", data_value)
@@ -58,7 +58,7 @@ class TestXueqiu:
         # 使用MobileBy定位方法
         self.driver.find_element(MobileBy.ID, "search_input_text").send_keys(gupiao)
         # 读取data_value中的【gupiao】
-        self.driver.hide_keyboard()
+        # self.driver.hide_keyboard()
         # 隐藏键盘
 
     @pytest.mark.parametrize("gupiao", data_value)
@@ -84,6 +84,8 @@ class TestXueqiu:
 
     @pytest.mark.parametrize("gupiao", data_value)
     # 数据驱动
+    @pytest.mark.flaky(reruns=1, reruns_delay=0)
+    # 失败重跑
     def test_search_and_add_into_optional(self, gupiao):
         self.driver.find_element(MobileBy.ID, "tv_search").click()
         self.driver.find_element(MobileBy.ID, "search_input_text").send_keys(gupiao)

@@ -32,15 +32,15 @@ class App(BasePage):
             # # 测试完后重置为英文键盘输入
             # caps["dontStopAppOnReset"] = True
             # app启动时不重启进程
-            # caps["disableAndroidWatchers"] = True
+            caps["disableAndroidWatchers"] = True
             # 关闭安卓监听机制，提速用
-            # caps["skipDeviceInitialization"] = True
+            caps["skipDeviceInitialization"] = True
             # 每次执行时，跳过appium对设备权限和配置的初始化，加快启动速度
-            # caps["skipServerInstallation"] = True
+            caps["skipServerInstallation"] = True
             # 每次执行时，跳过uiautomator2 server的安装，加快启动速度
             caps["chromedriverExecutable"] = "/Users/ouchou/chromedriver/chromedriver_2.20"
             # 切换到webview后，需要指定chromedriver的版本，否则切换失败
-            # caps["avd"] = "p_api_23"
+            caps["avd"] = "p_api_23"
             # 启动指定模拟器
 
             self._driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
