@@ -24,7 +24,8 @@ class Stocks(BasePage):
     def goto_search_page_by_yaml(self):
         WebDriverWait(self._driver, 10).until(expected_conditions.visibility_of_element_located(self._search_button))
         # 页面切换有延时，需要等待搜索按钮出现
-        self.steps("../page/stock.yaml")
+        # self.steps("../page/stock.yaml")
+        self.steps("appium_test_po/page/stock.yaml")
         # 点击搜索按钮
         return Search(self._driver)
         # 返回搜索页面
