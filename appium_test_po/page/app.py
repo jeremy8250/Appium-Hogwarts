@@ -59,7 +59,7 @@ class App(BasePage):
         pass
 
     def stop(self):
-        pass
+        self._driver.quit(self._driver)
 
     def main(self) -> Main:
         # 【->】返回引导类型
