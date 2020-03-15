@@ -1,6 +1,8 @@
 """
 app页面定义一些通用的方法
 """
+import os
+
 from appium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -24,6 +26,10 @@ class App(BasePage):
             caps["appActivity"] = self._appActivity
             caps["noReset"] = True
             # 启动时不重置数据
+            udid = os.getenv("UDID", None)
+            if udid != None:
+                caps["udid"] = udid
+            # 从外部获取udid，使得selenium grid可以将job分发到不同设备运行
             caps["autoGrantPermissions"] = True
             # 自动确认权限
             # caps["unicodeKeyBoard"] = True
@@ -40,10 +46,12 @@ class App(BasePage):
             # 每次执行时，跳过uiautomator2 server的安装，加快启动速度
             caps["chromedriverExecutable"] = "/Users/ouchou/chromedriver/chromedriver_2.20"
             # 切换到webview后，需要指定chromedriver的版本，否则切换失败
-            caps["avd"] = "p_api_23"
+            # caps["avd"] = "p_api_23"
             # 启动指定模拟器
 
-            self._driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+            # self._driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+            self._driver = webdriver.Remote("http://192.168.1.9:4444/wd/hub", caps)
+            # 将ip转向selenium hub
             self._driver.implicitly_wait(10)
 
             # self.driver.find_element(MobileBy.XPATH, '//*[@resource-id="com.xueqiu.android:id/tv_skip"]').click()
