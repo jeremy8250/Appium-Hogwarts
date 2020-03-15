@@ -21,3 +21,4 @@ class TestStock:
         # 搜索京东->点击添加自选->点击取消按钮
         assert "京东" in self.stocks.get_selected_stock()
         # 验证股票已添加到自选列表
+
