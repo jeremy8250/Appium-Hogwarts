@@ -4,6 +4,7 @@ app页面定义一些通用的方法
 import os
 
 from appium import webdriver
+from selenium.webdriver.common import utils
 from selenium.webdriver.support.wait import WebDriverWait
 
 from appium_test_po.page.base_page import BasePage
@@ -30,6 +31,8 @@ class App(BasePage):
             if udid != None:
                 caps["udid"] = udid
             # 从外部获取udid，使得selenium grid可以将job分发到不同设备运行
+            caps['systemPort'] = utils.free_port()
+            caps['chromedrivePort'] = utils.free_port()
             caps["autoGrantPermissions"] = True
             # 自动确认权限
             # caps["unicodeKeyBoard"] = True
