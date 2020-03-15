@@ -22,7 +22,7 @@ class App(BasePage):
             # 这样可以避免再次安装appium控件
             caps = {}
             caps["platformName"] = "android"
-            caps["deviceName"] = "5554"
+            caps["deviceName"] = "emulator"
             caps["appPackage"] = self._appPackage
             caps["appActivity"] = self._appActivity
             caps["noReset"] = True
@@ -30,9 +30,10 @@ class App(BasePage):
             udid = os.getenv("UDID", None)
             if udid != None:
                 caps["udid"] = udid
+            # caps["udid"] = "emulator-5554"
             # 从外部获取udid，使得selenium grid可以将job分发到不同设备运行
-            caps['systemPort'] = utils.free_port()
-            caps['chromedrivePort'] = utils.free_port()
+            caps["systemPort"] = utils.free_port()
+            caps["chromedrivePort"] = utils.free_port()
             caps["autoGrantPermissions"] = True
             # 自动确认权限
             # caps["unicodeKeyBoard"] = True
@@ -41,11 +42,11 @@ class App(BasePage):
             # # 测试完后重置为英文键盘输入
             # caps["dontStopAppOnReset"] = True
             # app启动时不重启进程
-            caps["disableAndroidWatchers"] = True
+            # caps["disableAndroidWatchers"] = True
             # 关闭安卓监听机制，提速用
-            caps["skipDeviceInitialization"] = True
+            # caps["skipDeviceInitialization"] = True
             # 每次执行时，跳过appium对设备权限和配置的初始化，加快启动速度
-            caps["skipServerInstallation"] = True
+            # caps["skipServerInstallation"] = True
             # 每次执行时，跳过uiautomator2 server的安装，加快启动速度
             caps["chromedriverExecutable"] = "/Users/ouchou/chromedriver/chromedriver_2.20"
             # 切换到webview后，需要指定chromedriver的版本，否则切换失败
@@ -54,8 +55,8 @@ class App(BasePage):
 
             # self._driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
             self._driver = webdriver.Remote("http://192.168.1.9:4444/wd/hub", caps)
-            # 将ip转向selenium hub
-            self._driver.implicitly_wait(10)
+            # 通过selenium hub转发
+            self._driver.implicitly_wait(6)
 
             # self.driver.find_element(MobileBy.XPATH, '//*[@resource-id="com.xueqiu.android:id/tv_skip"]').click()
             # 启动页加载时的倒计时
