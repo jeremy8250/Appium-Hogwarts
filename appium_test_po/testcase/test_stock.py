@@ -22,3 +22,5 @@ class TestStock:
         assert "京东" in self.stocks.get_selected_stock()
         # 验证股票已添加到自选列表
 
+    def teardown(self):
+        App().stop()
